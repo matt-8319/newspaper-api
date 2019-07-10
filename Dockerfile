@@ -7,7 +7,7 @@ RUN pip install --no-cache-dir flask uwsgi
 
 #Clone newspaper project and checkout specific commit
 RUN git clone https://github.com/codelucas/newspaper.git && \
-    cd newspaper && git checkout 11cbf3a3038c0630d14e55743b942b6f36624a6b \
+    cd newspaper \
     && pip install -r requirements.txt
 
 COPY . .
