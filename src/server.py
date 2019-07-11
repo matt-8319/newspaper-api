@@ -14,6 +14,9 @@ log.setLevel(logging.ERROR)
 def api_top_image():
     url = request.args.get('url')
     article = get_article(url)
+
+    article = get_article_nlp(article)
+
     return json.dumps({
         "authors": article.authors,
         "html": article.html,
@@ -22,7 +25,17 @@ def api_top_image():
         "publish_date": article.publish_date.strftime("%s") if article.publish_date else None,
         "text": article.text,
         "title": article.title,
-        "topimage": article.top_image}), 200, {'Content-Type': 'application/json'}
+        "topimage": article.top_image,
+        "keywords": article.keywords,
+        "summary": article.summary
+    }), 200, {'Content-Type': 'application/json'}
+
+def get_article_nlp(article):
+    import nltk
+    nltk.download('punkt')
+    article.nlp()
+
+    return article
 
 def get_article(url):
     pdf_defaults = {"application/pdf": "%PDF-",

@@ -2,7 +2,7 @@ FROM python:3.7-slim
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get -y install gcc python3-dev python3-pip libxml2-dev libxslt1-dev zlib1g-dev g++ git
+    apt-get -y install gcc g++ git
 
 RUN pip install --no-cache-dir flask uwsgi
 
